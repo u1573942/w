@@ -94,7 +94,14 @@ const proxies_ = {
     host: prox.split(':')[0],
     port: parseInt(prox.split(':')[1]),
 };
-        const response2 = await axios.post(url2, payload2, { headers: headers2, proxy: proxies_, timeout: 60000 }); 
+        const response2 = await axios.post(url2, payload2, { 
+    headers: headers2, 
+    proxy: proxies_, 
+    timeout: 60000,
+    validateStatus: function (status) {
+      return status >= 200 && status < 500; // Resolve only if the status code is less than 500
+    }
+}); 
         const response2Json = response2.data || {};
 
         const id = response2Json.id || '';
