@@ -100,7 +100,8 @@ const proxies_ = {
     timeout: 60000,
     validateStatus: function (status) {
       return status >= 200 && status < 500; // Resolve only if the status code is less than 500
-    }
+    },
+    secureProtocol: 'TLSv1_2'
 }); 
         const response2Json = response2.data || {};
 
